@@ -21,6 +21,30 @@ OpenAPI UI at `http://localhost:4000/api/docs`.
 To stop PostgreSQL, run `corepack pnpm db:down`. The local Compose volume is retained between stops.
 The Compose database password is for local development only and must not be reused elsewhere.
 
+## PostgreSQL integration tests
+
+The API integration test requires a dedicated PostgreSQL database named
+`portfolio_intelligence_hub_test`. Set `TEST_DATABASE_URL` to that database; the test refuses any
+other database name and never falls back to `DATABASE_URL`. It is skipped when `TEST_DATABASE_URL`
+is not set.
+
+Create the dedicated database using your local PostgreSQL administration workflow:
+
+```sql
+CREATE DATABASE portfolio_intelligence_hub_test;
+```
+
+Then point Prisma migrations and the API test at it from PowerShell:
+
+```powershell
+$env:TEST_DATABASE_URL = 'postgresql://<user>:<password>@127.0.0.1:5432/portfolio_intelligence_hub_test'
+$env:DATABASE_URL = $env:TEST_DATABASE_URL
+corepack pnpm --filter @pih/api run db:deploy
+corepack pnpm --filter @pih/api run test
+```
+
+Use a test-only database; do not point this URL at development or production data.
+
 ## Checks
 
 Run `corepack pnpm lint`, `corepack pnpm typecheck`, `corepack pnpm test`, `corepack pnpm build`,
