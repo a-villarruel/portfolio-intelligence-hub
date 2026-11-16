@@ -15,14 +15,24 @@ function parseIntegerQueryValue(value: unknown): unknown {
 }
 
 export class ListDemandsQueryDto {
-  @ApiPropertyOptional({ minimum: 1, maximum: Number.MAX_SAFE_INTEGER, default: DEFAULT_PAGE })
+  @ApiPropertyOptional({
+    type: 'integer',
+    minimum: 1,
+    maximum: Number.MAX_SAFE_INTEGER,
+    default: DEFAULT_PAGE,
+  })
   @Transform(({ value }) => parseIntegerQueryValue(value))
   @IsInt()
   @Min(1)
   @Max(Number.MAX_SAFE_INTEGER)
   page = DEFAULT_PAGE;
 
-  @ApiPropertyOptional({ minimum: 1, maximum: MAX_PAGE_SIZE, default: DEFAULT_PAGE_SIZE })
+  @ApiPropertyOptional({
+    type: 'integer',
+    minimum: 1,
+    maximum: MAX_PAGE_SIZE,
+    default: DEFAULT_PAGE_SIZE,
+  })
   @Transform(({ value }) => parseIntegerQueryValue(value))
   @IsInt()
   @Min(1)

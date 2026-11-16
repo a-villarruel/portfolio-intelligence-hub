@@ -28,4 +28,6 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - run: git ls-files --error-unmatch apps/api/openapi.json packages/api-client/src/generated/schema.d.ts
+      - run: git diff --exit-code HEAD -- apps/api/openapi.json packages/api-client/src/generated/schema.d.ts
       - run: pnpm format:check

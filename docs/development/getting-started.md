@@ -50,3 +50,7 @@ Use a test-only database; do not point this URL at development or production dat
 Run `corepack pnpm lint`, `corepack pnpm typecheck`, `corepack pnpm test`, `corepack pnpm build`,
 and `corepack pnpm format:check`.
 The API client is generated from the NestJS OpenAPI document during typecheck/build.
+To regenerate both contract artifacts explicitly, run `corepack pnpm run api-client:generate`.
+Commit the generated `apps/api/openapi.json` and
+`packages/api-client/src/generated/schema.d.ts`; do not edit either file manually. CI regenerates
+them during typecheck/build and fails if the generated files differ from the committed versions.
