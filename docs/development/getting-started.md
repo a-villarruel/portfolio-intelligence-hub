@@ -8,15 +8,22 @@
 ## Setup
 
 1. Use Corepack to install dependencies with `corepack pnpm install`.
-2. Copy `.env.example` to `.env` at the repository root.
-3. Start PostgreSQL with `corepack pnpm db:up`.
-4. Generate the Prisma client and apply local migrations with `corepack pnpm db:generate` and
+2. Copy `.env.example` to `.env` at the repository root. Set `WEB_ORIGIN` to the exact origin
+   serving the web app; the API uses it as its sole allowed CORS origin.
+3. Copy `apps/web/.env.example` to `apps/web/.env.local`. Set `NEXT_PUBLIC_API_BASE_URL` to the
+   API origin reachable by the browser.
+4. Start PostgreSQL with `corepack pnpm db:up`.
+5. Generate the Prisma client and apply local migrations with `corepack pnpm db:generate` and
    `corepack pnpm db:migrate`.
-5. Start both applications with `corepack pnpm dev`, or start them separately with
+6. Start both applications with `corepack pnpm dev`, or start them separately with
    `corepack pnpm dev:web` and `corepack pnpm dev:api`.
 
 The web app is available at `http://localhost:3000`; the API listens on port 4000, with its
 OpenAPI UI at `http://localhost:4000/api/docs`.
+The API allows only the configured `WEB_ORIGIN` for browser requests, and its CORS methods and
+headers are limited to the current API's GET/POST and JSON requests. Use an HTTP or HTTPS origin
+without a path. For deployments, set each variable to the corresponding public origin: the API
+origin for `NEXT_PUBLIC_API_BASE_URL` and the web app origin for `WEB_ORIGIN`.
 
 To stop PostgreSQL, run `corepack pnpm db:down`. The local Compose volume is retained between stops.
 The Compose database password is for local development only and must not be reused elsewhere.

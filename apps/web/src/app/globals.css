@@ -15,15 +15,8 @@ body {
 }
 
 main {
-  display: grid;
   min-height: 100vh;
-  place-content: center;
-  padding: 2rem;
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 0.5rem;
+  padding: 2rem 1rem;
 }
 
 p {
