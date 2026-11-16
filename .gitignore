@@ -9,8 +9,6 @@ coverage/
 !.env.example
 
 apps/api/src/generated/prisma/
-apps/api/openapi.json
-packages/api-client/src/generated/
 
 .DS_Store
 Thumbs.db
