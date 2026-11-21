@@ -1,8 +1,8 @@
 'use client';
 
 import { createApiClient } from '@pih/api-client';
+import type { components } from '@pih/api-client';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
-import type { components } from '../../../../../packages/api-client/src/index.js';
 import styles from './demand-management.module.css';
 
 type Demand = components['schemas']['DemandResponseDto'];

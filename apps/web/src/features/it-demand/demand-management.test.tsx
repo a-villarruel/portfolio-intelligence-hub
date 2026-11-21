@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { components } from '../../../../../packages/api-client/src/index.js';
+import type { components } from '@pih/api-client';
 import { DemandManagement } from './demand-management';
 
 type Demand = components['schemas']['DemandResponseDto'];
