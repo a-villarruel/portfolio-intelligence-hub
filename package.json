@@ -14,7 +14,7 @@
     "api-client:generate": "corepack pnpm run build:api && corepack pnpm run api:openapi && corepack pnpm --filter @pih/api-client run generate",
     "build": "corepack pnpm run api-client:generate && corepack pnpm --filter @pih/api-client run build && corepack pnpm --filter @pih/api run build && corepack pnpm --filter @pih/web run build",
     "lint": "corepack pnpm --filter @pih/api run lint && corepack pnpm --filter @pih/api-client run lint && corepack pnpm --filter @pih/web run lint",
-    "typecheck": "corepack pnpm run api-client:generate && corepack pnpm --filter @pih/api run typecheck && corepack pnpm --filter @pih/api-client run typecheck && corepack pnpm --filter @pih/web run typecheck",
+    "typecheck": "corepack pnpm run api-client:generate && corepack pnpm --filter @pih/api run typecheck && corepack pnpm --filter @pih/api-client run typecheck && corepack pnpm --filter @pih/api-client run build && corepack pnpm --filter @pih/web run typecheck",
     "test": "corepack pnpm --filter @pih/api run test && corepack pnpm --filter @pih/web run test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
